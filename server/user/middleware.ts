@@ -144,6 +144,126 @@ const isAuthorExists = async (req: Request, res: Response, next: NextFunction) =
   next();
 };
 
+/**
+ * Checks if a user with username in req.body exists
+ */
+ const isUserExists = async (req: Request, res: Response, next: NextFunction) => {
+  if (!req.body.username) {
+    res.status(400).json({
+      error: 'Provided username must be nonempty.'
+    });
+    return;
+  }
+
+  const user = await UserCollection.findOneByUsername(req.body.username as string);
+  if (!user) {
+    res.status(404).json({
+      error: `A user with username ${req.body.username as string} does not exist.`
+    });
+    return;
+  }
+
+  next();
+};
+
+/**
+ * Checks if a user with username in req.params exists
+ */
+ const isUserParamExists = async (req: Request, res: Response, next: NextFunction) => {
+  if (!req.params.username) {
+    res.status(400).json({
+      error: 'Provided username must be nonempty.'
+    });
+    return;
+  }
+
+  const user = await UserCollection.findOneByUsername(req.params.username as string);
+  if (!user) {
+    res.status(404).json({
+      error: `A user with username ${req.params.username as string} does not exist.`
+    });
+    return;
+  }
+
+  next();
+};
+
+/**
+ * Checks if a user with userId as author id in req.query exists
+ */
+ const isUserQueryExists = async (req: Request, res: Response, next: NextFunction) => {
+  if (!req.query.username) {
+    res.status(400).json({
+      error: 'Provided username must be nonempty.'
+    });
+    return;
+  }
+
+  const user = await UserCollection.findOneByUsername(req.query.username as string);
+  if (!user) {
+    res.status(404).json({
+      error: `A user with username ${req.params.username as string} does not exist.`
+    });
+    return;
+  }
+
+  next();
+};
+
+const isBodyNotEqualLoggedInUser = async(req:Request, res:Response, next: NextFunction) => {
+  const loggedInUser = await UserCollection.findOneByUserId((req.session.userId as string) ?? '')
+  if (!req.body.username){
+    res.status(400).json({
+      error: 'Provided username must be nonempty.'
+    });
+    return;
+  }
+
+  if (loggedInUser.username == req.body.username){
+    res.status(409).json({
+      error: `The provided user must be different from yourself.`
+    });
+    return;
+  }
+  next();
+}
+
+const isParamsNotEqualLoggedInUser = async(req:Request, res:Response, next: NextFunction) => {
+  const loggedInUser = await UserCollection.findOneByUserId((req.session.userId as string) ?? '')
+  if (!req.params.username){
+    res.status(400).json({
+      error: 'Provided username must be nonempty.'
+    });
+    return;
+  }
+
+  if (loggedInUser.username == req.params.username){
+    res.status(409).json({
+      error: `The provided user must be different from yourself.`
+    });
+    return;
+  }
+  next();
+}
+
+const isQueryNotEqualLoggedInUser = async(req:Request, res:Response, next: NextFunction) => {
+  const loggedInUser = await UserCollection.findOneByUserId((req.session.userId as string) ?? '')
+  if (!req.query.username){
+    res.status(400).json({
+      error: 'Provided username must be nonempty.'
+    });
+    return;
+  }
+
+  if (loggedInUser.username == req.query.username){
+    res.status(409).json({
+      error: `The provided user must be different from yourself.`
+    });
+    return;
+  }
+  next();
+}
+
 export {
   isCurrentSessionUserExists,
   isUserLoggedIn,
@@ -152,5 +272,11 @@ export {
   isAccountExists,
   isAuthorExists,
   isValidUsername,
-  isValidPassword
+  isValidPassword,
+  isUserExists,
+  isUserParamExists,
+  isUserQueryExists,
+  isBodyNotEqualLoggedInUser,
+  isParamsNotEqualLoggedInUser,
+  isQueryNotEqualLoggedInUser
 };
