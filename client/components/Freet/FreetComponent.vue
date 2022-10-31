@@ -155,6 +155,7 @@ export default {
 
         this.editing = false;
         this.$store.commit('refreshFreets');
+        this.$store.commit('refreshFeed');
 
         params.callback();
       } catch (e) {

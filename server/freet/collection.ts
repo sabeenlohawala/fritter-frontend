@@ -65,8 +65,15 @@ class FreetCollection {
     for (const freet of allFreets){
       if (freet.circlename){
         if (userId){
+          // const circle = await CircleCollection.findOneMembership(freet.circlename,freet.authorId,userId);
+          // if (circle){
+          //   allAccessible.push(freet);
+          // }
           const circle = await CircleCollection.findOneMembership(freet.circlename,freet.authorId,userId);
-          if (circle){
+          const loggedIn = await UserCollection.findOneByUserId(userId);
+          const author = await UserCollection.findOneByUserId(freet.authorId);
+          console.log(loggedIn.username === author.username)
+          if (loggedIn.username === author.username || circle){
             allAccessible.push(freet);
           }
         }
@@ -86,7 +93,7 @@ class FreetCollection {
    */
   static async findAllByUsername(username: string): Promise<Array<HydratedDocument<Freet>>> {
     const author = await UserCollection.findOneByUsername(username);
-    return FreetModel.find({authorId: author._id}).sort({dateModified: -1}).populate('authorId');
+    return FreetModel.find({authorId: author._id}).populate('authorId');
   }
 
   /**

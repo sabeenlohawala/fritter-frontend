@@ -23,7 +23,7 @@ class FeedCollection {
      *
      * @return {Promise<HydratedDocument<Freet>[]>} - An array of all of the freets
      */
-    static async findAll(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Freet>>> {
+    static async findAll_v1(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Freet>>> {
         const now = new Date();
         const user = await UserCollection.findOneByUserId(userId);
         const allFollowing = await FollowCollection.findAllFollowingByUserId(userId);
@@ -101,6 +101,90 @@ class FeedCollection {
         }
 
         return allFreets
+    }
+
+    static async findAll(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Freet>>> {
+        // in the feed, the user is able to view all freets made by people they themselves or
+        // all tweets made by people they follow that obey the mute rules
+        const now = new Date();
+        const user = await UserCollection.findOneByUserId(userId);
+        const allFollowing = await FollowCollection.findAllFollowingByUserId(userId);
+        const allCircles = await CircleCollection.findAll(userId);
+        const relevantMutes = await MuteCollection.findAllRelevant(userId);
+
+        const feedFreets:Array<HydratedDocument<Freet>> = []
+        const accessibleFreets = await FreetCollection.findAllAccessible(userId);
+        for (const freet of accessibleFreets){
+            let muteApplies = false;
+            const authorName = (await UserCollection.findOneByUserId(freet.authorId)).username;
+            console.log(authorName);
+            let following = user.username === authorName? true : await FollowCollection.findOne(userId,freet.authorId);
+            console.log(following);
+            if (user.username !== authorName && following !== null){
+                for (const mute of relevantMutes){ // check if any mute rule applies
+                    // if account is specified and account != author, ignore mute
+                    // if circle is specified and author is not member of circle, ignore mute
+                    // mute can have: P, A, C, P&A, P&C, A&C, P&A&C
+                    let account = undefined;
+                    let circle = undefined;
+                    if (mute.account){
+                        account = await UserCollection.findOneByUserId(mute.account._id); // account specified by the mute
+                    }
+                    if (mute.circlename){
+                        circle = await CircleCollection.findOneMembership(mute.circlename,userId,freet.authorId); // circle specified by the mute
+                    }
+
+                    if (mute.phrase && mute.account && mute.circlename){
+                        if ((account.username === authorName || circle) && freet.content.includes(mute.phrase)){
+                            muteApplies = true;
+                            break;
+                        }
+                    }
+                    else if (mute.account && mute.circlename){
+                        if (account.username === authorName || circle){
+                            muteApplies = true;
+                            break;
+                        }
+                    }
+                    else if (mute.phrase && mute.circlename){
+                        if (circle && freet.content.includes(mute.phrase)){
+                            muteApplies = true;
+                            break;
+                        }
+                    }
+                    else if (mute.phrase && mute.account){
+                        if (account.username === authorName && freet.content.includes(mute.phrase)){
+                            muteApplies = true;
+                            break;
+                        }
+                    }
+                    else if (mute.circlename){
+                        if (circle){
+                            muteApplies = true;
+                            break;
+                        }
+                    }
+                    else if (mute.account){
+                        if (account.username === authorName){
+                            muteApplies = true;
+                            break;
+                        }
+                    }
+                    else if (mute.phrase){
+                        if (freet.content.includes(mute.phrase)){
+                            muteApplies = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            console.log(muteApplies);
+            if (!muteApplies && following !== null){
+                feedFreets.push(freet);
+            }
+        }
+        console.log(feedFreets);
+        return feedFreets
     }
 
     

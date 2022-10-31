@@ -16,6 +16,7 @@ export default {
       ],
       title: 'Create a freet',
       refreshFreets: true,
+      refreshFeed: true,
       callback: () => {
         const message = 'Successfully created a freet!';
         this.$set(this.alerts, message, 'success');
