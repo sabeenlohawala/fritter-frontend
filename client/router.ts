@@ -5,10 +5,13 @@ import AccountPage from './components/Account/AccountPage.vue';
 import LoginPage from './components/Login/LoginPage.vue';
 import NotFound from './NotFound.vue';
 
+import FeedPage from './components/Feed/FeedPage.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
   {path: '/', name: 'Home', component: FreetsPage},
+  {path: '/feed', name: 'Feed', component: FeedPage},
   {path: '/account', name: 'Account', component: AccountPage},
   {path: '/login', name: 'Login', component: LoginPage},
   {path: '*', name: 'Not Found', component: NotFound}
@@ -28,6 +31,11 @@ router.beforeEach((to, from, next) => {
 
     if (to.name === 'Account' && !router.app.$store.state.username) {
       next({name: 'Login'}); // Go to Login page if user navigates to Account and are not signed in
+      return;
+    }
+
+    if (to.name === 'Feed' && !router.app.$store.state.username) {
+      next({name: 'Home'}); // Go to Login page if user navigates to Account and are not signed in
       return;
     }
   }
