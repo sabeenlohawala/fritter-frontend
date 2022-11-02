@@ -17,11 +17,11 @@
             <router-link to="/login">
               Sign in
             </router-link>
-            to create, edit, and delete freets.
+            to view your feed.
           </h3>
         </article>
       </section>
-      <section>
+      <section v-if="$store.state.username">
         <header>
           <div class="left">
             <h2>
