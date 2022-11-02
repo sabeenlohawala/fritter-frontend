@@ -55,7 +55,7 @@ class FollowCollection{
      * @return {Promise<HydratedDocument<Follow>[]>} - An array of all of the Follows
      */
     static async findAllFollowersByUserId(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Follow>>> {
-        return FollowModel.find({following: userId}).populate(['follower','following']).sort({follower: 1});
+        return FollowModel.find({following: userId}).populate(['follower','following']).sort({follower: -1});
     }
 
     /**
@@ -65,7 +65,7 @@ class FollowCollection{
      * @return {Promise<HydratedDocument<Follow>[]>} - An array of all of the Follows
      */
      static async findAllFollowingByUserId(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Follow>>> {
-        return FollowModel.find({follower: userId}).populate(['follower','following']).sort({following: 1});
+        return FollowModel.find({follower: userId}).populate(['follower','following']).sort({following: -1});
     }
 }
 

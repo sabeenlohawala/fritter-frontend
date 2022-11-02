@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import FreetsPage from './components/Freet/FreetsPage.vue';
 import FollowersPage from './components/Followers/FollowersPage.vue';
+import FollowingPage from './components/Following/FollowingPage.vue';
 import AccountPage from './components/Account/AccountPage.vue';
 import LoginPage from './components/Login/LoginPage.vue';
 import NotFound from './NotFound.vue';
@@ -14,6 +15,7 @@ const routes = [
   {path: '/', name: 'Home', component: FreetsPage},
   {path: '/feed', name: 'Feed', component: FeedPage},
   {path: '/followers', name: 'Followers', component: FollowersPage},
+  {path: '/following', name: 'Following', component: FollowingPage},
   {path: '/account', name: 'Account', component: AccountPage},
   {path: '/login', name: 'Login', component: LoginPage},
   {path: '*', name: 'Not Found', component: NotFound}
@@ -42,6 +44,10 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.name === 'Followers' && !router.app.$store.state.username){
+      next({name: 'Home'});
+    }
+
+    if (to.name === 'Following' && !router.app.$store.state.username){
       next({name: 'Home'});
     }
   }

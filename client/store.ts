@@ -13,6 +13,7 @@ const store = new Vuex.Store({
     freets: [], // All freets created in the app
     feed: [], // All freets contained in the user's feed
     followers: [],
+    following: [],
     username: null, // Username of the logged in user
     alerts: {} // global success/error messages encountered during submissions to non-visible forms
   },
@@ -85,6 +86,22 @@ const store = new Vuex.Store({
       const url = `/api/follows/followers`;
       const res = await fetch(url).then(async r => r.json());
       state.followers = res;
+    },
+    updateFollowing(state, following) {
+      /**
+       * Update the stored followers to the provided followers.
+       * @param following - Followers to store
+       */
+      state.following = following;
+    },
+    async refreshFollowing(state) {
+      /**
+       * Request the server for the currently available followers.
+       */
+      console.log('here')
+      const url = `/api/follows/following`;
+      const res = await fetch(url).then(async r => r.json());
+      state.following = res;
     },
   },
   // Store data across page refreshes, only discard on browser close

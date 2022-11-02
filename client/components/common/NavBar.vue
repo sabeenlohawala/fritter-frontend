@@ -26,6 +26,12 @@
       >
         Followers
       </router-link>
+      <router-link 
+        v-if="$store.state.username"
+        to="/following"
+      >
+        Following
+      </router-link>
       <router-link
         v-if="$store.state.username"
         to="/account"

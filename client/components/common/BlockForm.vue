@@ -63,6 +63,7 @@ export default {
       refreshFreets: false, // Whether or not stored freets should be updated after form submission
       refreshFeed: false, // Whether or not stored freets should be updated after form submission
       refreshFollowers:false,
+      refreshFollowing:false,
       alerts: {}, // Displays success/error messages encountered during form submission
       callback: null // Function to run after successful form submission
     };
@@ -111,6 +112,10 @@ export default {
 
         if (this.refreshFollowers) {
           this.$store.commit('refreshFollowers');
+        }
+
+        if (this.refreshFollowing) {
+          this.$store.commit('refreshFollowing');
         }
 
         if (this.callback) {
