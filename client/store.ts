@@ -11,7 +11,8 @@ const store = new Vuex.Store({
   state: {
     filter: null, // Username to filter shown freets by (null = show all)
     freets: [], // All freets created in the app
-    feed: [],
+    feed: [], // All freets contained in the user's feed
+    followers: [],
     username: null, // Username of the logged in user
     alerts: {} // global success/error messages encountered during submissions to non-visible forms
   },
@@ -63,12 +64,28 @@ const store = new Vuex.Store({
     },
     async refreshFeed(state) {
       /**
-       * Request the server for the currently available freets.
+       * Request the server for the currently available freets in the feed.
        */
       const url = `/api/feeds`;
       const res = await fetch(url).then(async r => r.json());
       state.feed = res;
-    }
+      console.log(state.feed)
+    },
+    updateFollowers(state, followers) {
+      /**
+       * Update the stored followers to the provided followers.
+       * @param followers - Followers to store
+       */
+      state.followers = followers;
+    },
+    async refreshFollowers(state) {
+      /**
+       * Request the server for the currently available followers.
+       */
+      const url = `/api/follows/followers`;
+      const res = await fetch(url).then(async r => r.json());
+      state.followers = res;
+    },
   },
   // Store data across page refreshes, only discard on browser close
   plugins: [createPersistedState()]

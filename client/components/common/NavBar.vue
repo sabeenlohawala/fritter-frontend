@@ -20,6 +20,12 @@
       >
         Feed
       </router-link>
+      <router-link 
+        v-if="$store.state.username"
+        to="/followers"
+      >
+        Followers
+      </router-link>
       <router-link
         v-if="$store.state.username"
         to="/account"

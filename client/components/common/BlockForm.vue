@@ -62,6 +62,7 @@ export default {
       setUsername: false, // Whether or not stored username should be updated after form submission
       refreshFreets: false, // Whether or not stored freets should be updated after form submission
       refreshFeed: false, // Whether or not stored freets should be updated after form submission
+      refreshFollowers:false,
       alerts: {}, // Displays success/error messages encountered during form submission
       callback: null // Function to run after successful form submission
     };
@@ -106,6 +107,10 @@ export default {
 
         if (this.refreshFeed) {
           this.$store.commit('refreshFeed');
+        }
+
+        if (this.refreshFollowers) {
+          this.$store.commit('refreshFollowers');
         }
 
         if (this.callback) {
