@@ -14,7 +14,7 @@ import FeedPage from './components/Feed/FeedPage.vue';
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '/', name: 'Home', component: FreetsPage},
+  {path: '/', name: 'Browse', component: FreetsPage},
   {path: '/feed', name: 'Feed', component: FeedPage},
   {path: '/followers', name: 'Followers', component: FollowersPage},
   {path: '/following', name: 'Following', component: FollowingPage},
@@ -43,16 +43,16 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.name === 'Feed' && !router.app.$store.state.username) {
-      next({name: 'Home'}); // Go to Login page if user navigates to Account and are not signed in
+      next({name: 'Browse'}); // Go to Login page if user navigates to Account and are not signed in
       return;
     }
 
     if (to.name === 'Followers' && !router.app.$store.state.username){
-      next({name: 'Home'});
+      next({name: 'Browse'});
     }
 
     if (to.name === 'Following' && !router.app.$store.state.username){
-      next({name: 'Home'});
+      next({name: 'Browse'});
     }
   }
 

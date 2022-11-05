@@ -11,14 +11,14 @@
       </h1>
     </div>
     <div class="right">
-      <router-link to="/">
-        Home
-      </router-link>
       <router-link 
         v-if="$store.state.username"
         to="/feed"
       >
         Feed
+      </router-link>
+      <router-link to="/">
+        Browse
       </router-link>
       <router-link 
         v-if="$store.state.username"

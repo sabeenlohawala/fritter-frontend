@@ -4,13 +4,13 @@
   <main>
     <section v-if="$store.state.username">
       <header>
-        <h2>Welcome @{{ $store.state.username }}</h2>
+        <h2>Browse All Freets</h2>
       </header>
       <CreateFreetForm />
     </section>
     <section v-else>
       <header>
-        <h2>Welcome to Fritter!</h2>
+        <h2>Browse All Freets</h2>
       </header>
       <article>
         <h3>
