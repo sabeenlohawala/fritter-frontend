@@ -106,6 +106,22 @@ class CircleCollection{
      *
      * @return {Promise<HydratedDocument<Circle>[]>} - An array of all of the circles
      */
+     static async findAllCirclenames(owner:Types.ObjectId | string): Promise<Array<String>> {
+        const allCircles = await CircleModel.find({owner: owner}).populate(['owner','member']);
+        const circlenames:String[] = []
+        for (const circle of allCircles){
+            if (!circlenames.includes(circle.circlename)){
+                circlenames.push(circle.circlename);
+            }
+        }
+        return circlenames
+    }
+
+    /**
+     * Get all the circles of the user logged in
+     *
+     * @return {Promise<HydratedDocument<Circle>[]>} - An array of all of the circles
+     */
      static async findAllByCirclename(circlename: string, owner:Types.ObjectId | string): Promise<Array<HydratedDocument<Circle>>> {
         return CircleModel.find({circlename:circlename, owner: owner}).populate(['owner','member']);
     }

@@ -14,6 +14,7 @@ const store = new Vuex.Store({
     feed: [], // All freets contained in the user's feed
     followers: [],
     following: [],
+    circlenames: [],
     username: null, // Username of the logged in user
     alerts: {} // global success/error messages encountered during submissions to non-visible forms
   },
@@ -102,6 +103,33 @@ const store = new Vuex.Store({
       const url = `/api/follows/following`;
       const res = await fetch(url).then(async r => r.json());
       state.following = res;
+    },
+    updateCirclenames(state, res) {
+      /**
+       * Update the stored followers to the provided followers.
+       * @param following - Followers to store
+       */
+      // for (const circle of circlemembers){
+      //   if (!state.circlenames.includes(circle.circlename)){
+      //     state.circlenames.push(circle.circlename);
+      //   }
+      // }
+      state.circlenames = res;
+    },
+    async refreshCirclenames(state) {
+      /**
+       * Request the server for the currently available followers.
+       */
+      console.log('here')
+      const url = `/api/circles/circlenames`;
+      const res = await fetch(url, {method: 'GET'}).then(async r => r.json());
+      // for (const circle of res){
+      //   if (!state.circlenames.includes(circle.circlename)){
+      //     state.circlenames.push(circle.circlename);
+      //   }
+      // }
+      state.circlenames = res;
+      console.log(state.circlenames);
     },
   },
   // Store data across page refreshes, only discard on browser close

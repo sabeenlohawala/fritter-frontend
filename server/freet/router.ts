@@ -135,7 +135,7 @@ router.delete(
 //     });
 //   }
 // );
-router.put(
+router.patch(
   '/:freetId?',
   [
     userValidator.isUserLoggedIn,

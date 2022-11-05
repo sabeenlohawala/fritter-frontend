@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import FreetsPage from './components/Freet/FreetsPage.vue';
 import FollowersPage from './components/Followers/FollowersPage.vue';
 import FollowingPage from './components/Following/FollowingPage.vue';
+import AllCirclePage from './components/Circles/AllCirclePage.vue';
+import CircleMembersPage from './components/Circles/CircleMembersPage.vue';
 import AccountPage from './components/Account/AccountPage.vue';
 import LoginPage from './components/Login/LoginPage.vue';
 import NotFound from './NotFound.vue';
@@ -16,6 +18,8 @@ const routes = [
   {path: '/feed', name: 'Feed', component: FeedPage},
   {path: '/followers', name: 'Followers', component: FollowersPage},
   {path: '/following', name: 'Following', component: FollowingPage},
+  {path: '/circles', name: 'Circles', component: AllCirclePage},
+  {path: '/circles/:circlename', name: 'CircleMembers', component: CircleMembersPage},
   {path: '/account', name: 'Account', component: AccountPage},
   {path: '/login', name: 'Login', component: LoginPage},
   {path: '*', name: 'Not Found', component: NotFound}

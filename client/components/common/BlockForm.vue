@@ -18,6 +18,7 @@
           :value="field.value"
           @input="field.value = $event.target.value"
         />
+        
         <input
           v-else
           :type="field.id === 'password' ? 'password' : 'text'"
@@ -64,6 +65,7 @@ export default {
       refreshFeed: false, // Whether or not stored freets should be updated after form submission
       refreshFollowers:false,
       refreshFollowing:false,
+      refreshCirclenames:false,
       alerts: {}, // Displays success/error messages encountered during form submission
       callback: null // Function to run after successful form submission
     };
@@ -116,6 +118,10 @@ export default {
 
         if (this.refreshFollowing) {
           this.$store.commit('refreshFollowing');
+        }
+
+        if(this.refreshCirclenames){
+          this.$store.commit('refreshCirclenames');
         }
 
         if (this.callback) {

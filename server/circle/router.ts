@@ -179,4 +179,24 @@ const router = express.Router();
     }
 );
 
+/**
+ * Get all the circles
+ *
+ * @name GET /api/circles/circlenames
+ *
+ * @return {CircleResponse[]} - A list of all the circle memberships
+ */
+ router.get(
+    '/circlenames',
+    [
+        userValidator.isUserLoggedIn,
+    ],
+    async (req: Request, res: Response, next: NextFunction) => {
+        const userId = (req.session.userId as string) ?? '';
+        const allCirclenames = await CircleCollection.findAllCirclenames(userId);
+        // const response = allCircles.map(util.constructCircleResponse);
+        res.status(200).json(allCirclenames);
+    }
+);
+
 export {router as circleRouter};

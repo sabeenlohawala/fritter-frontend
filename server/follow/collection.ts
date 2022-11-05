@@ -66,7 +66,8 @@ class FollowCollection{
      */
      static async findAllFollowingByUserId(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Follow>>> {
         return FollowModel.find({follower: userId}).populate(['follower','following']).sort({following: -1});
+        // return FollowModel.find({follower: userId}).populate('follower').populate({path:'following',options: {sort: [['following.username', 'asc' ]] }});
     }
 }
 
-export default FollowCollection;
+export default FollowCollection; 
