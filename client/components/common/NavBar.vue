@@ -38,6 +38,12 @@
       >
         Circles
       </router-link>
+      <router-link 
+        v-if="$store.state.username"
+        to="/mutes"
+      >
+        Mutes
+      </router-link>
       <router-link
         v-if="$store.state.username"
         to="/account"

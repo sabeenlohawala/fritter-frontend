@@ -6,7 +6,7 @@
         <header>
           <h2>Welcome @{{ $store.state.username }}</h2>
         </header>
-        <CreateFreetForm />
+        <CreateMuteForm />
       </section>
       <section v-else>
         <header>
@@ -17,7 +17,7 @@
             <router-link to="/login">
               Sign in
             </router-link>
-            to view your feed.
+            to view your circles.
           </h3>
         </article>
       </section>
@@ -25,65 +25,58 @@
         <header>
           <div class="left">
             <h2>
-              Viewing feed
-              <!-- <span v-if="$store.state.filter">
-                by @{{ $store.state.filter }}
-              </span> -->
+              Viewing all mutes
             </h2>
           </div>
         </header>
         <section
-          v-if="$store.state.feed.length"
+          v-if="$store.state.circlenames.length"
         >
-          <FreetComponent
-            v-for="freet in $store.state.feed"
-            :key="freet.id"
-            :freet="freet"
+          <MuteComponent
+            v-for="mute in this.mutes"
+            :key="mute.id"
+            :mute="mute"
           />
         </section>
         <article
           v-else
         >
-          <h3>No freets found.</h3>
+          <h3>No circles found.</h3>
         </article>
       </section>
     </main>
   </template>
   
   <script>
-
-  import FreetComponent from '@/components/Freet/FreetComponent.vue';
-  import CreateFreetForm from '@/components/Freet/CreateFreetForm.vue';
+  import MuteComponent from '@/components/Mutes/MuteComponent.vue';
+  import CreateMuteForm from '@/components/Mutes/CreateMuteForm.vue';
   
   export default {
-    name: 'FeedPage',
-    components: {FreetComponent, CreateFreetForm},
-    // data:{
-    //   feed:[]
-    // },
+    name: 'MutePage',
+    components: {MuteComponent, CreateMuteForm},
+    data(){
+      return {
+        mutes: [],
+      }
+    },
+    methods:{
+      updateMutes(res){
+        this.mutes = res;
+      }
+    },
     async mounted() {
-      const url = `/api/feeds`;
+      const url = `/api/mutes`;
       try {
-        const r = await fetch(url);
+        const r = await fetch(url,{method: 'GET'});
         const res = await r.json();
         if (!r.ok) {
           throw new Error(res.error);
         }
-
-        this.$store.commit('updateFilter', this.value);
-        this.$store.commit('updateFeed', res);
+  
+        // this.$store.commit('updateCirclenames', res);
+        this.updateMutes(res)
       } catch (e) {
-        // if (this.value === this.$store.state.filter) {
-        //   // This section triggers if you filter to a user but they
-        //   // change their username when you refresh
-        //   this.$store.commit('updateFilter', null);
-        //   this.value = ''; // Clear filter to show all users' freets
-        //   this.$store.commit('refreshFeed');
-        // } else {
-        //   // Otherwise reset to previous fitler
-        //   this.value = this.$store.state.filter;
-        // }
-
+  
         this.$set(this.alerts, e, 'error');
         setTimeout(() => this.$delete(this.alerts, e), 3000);
       }

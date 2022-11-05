@@ -5,6 +5,7 @@ import FollowersPage from './components/Followers/FollowersPage.vue';
 import FollowingPage from './components/Following/FollowingPage.vue';
 import AllCirclePage from './components/Circles/AllCirclePage.vue';
 import CircleMembersPage from './components/Circles/CircleMembersPage.vue';
+import MutePage from './components/Mutes/MutePage.vue';
 import AccountPage from './components/Account/AccountPage.vue';
 import LoginPage from './components/Login/LoginPage.vue';
 import NotFound from './NotFound.vue';
@@ -20,6 +21,7 @@ const routes = [
   {path: '/following', name: 'Following', component: FollowingPage},
   {path: '/circles', name: 'Circles', component: AllCirclePage},
   {path: '/circles/:circlename', name: 'CircleMembers', component: CircleMembersPage},
+  {path: '/mutes', name: 'Mutes', component: MutePage},
   {path: '/account', name: 'Account', component: AccountPage},
   {path: '/login', name: 'Login', component: LoginPage},
   {path: '*', name: 'Not Found', component: NotFound}
@@ -52,6 +54,18 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.name === 'Following' && !router.app.$store.state.username){
+      next({name: 'Browse'});
+    }
+
+    if (to.name === 'Circles' && !router.app.$store.state.username){
+      next({name: 'Browse'});
+    }
+
+    if (to.name === 'CircleMembers' && !router.app.$store.state.username){
+      next({name: 'Browse'});
+    }
+
+    if (to.name === 'Mutes' && !router.app.$store.state.username){
       next({name: 'Browse'});
     }
   }
