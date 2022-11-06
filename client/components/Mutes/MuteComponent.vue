@@ -7,7 +7,7 @@
     >
       <header>
         <p v-if="mute.phrase">Muted phrase: {{ mute.phrase }}</p>
-        <p v-if="mute.account">Muted account: {{ mute.account }}</p>
+        <p v-if="mute.account">Muted account: @{{ mute.account }}</p>
         <p v-if="mute.circlename"> Muted circle: {{ mute.circlename }}</p>
         <p v-if="mute.startTime">Mute start time: {{ mute.startTime }}</p>
         <p v-if="mute.endTime">Mute end time: {{ mute.endTime }}</p>

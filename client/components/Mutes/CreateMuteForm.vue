@@ -4,6 +4,7 @@
 <template>
     <form @submit.prevent="submit">
       <h3>{{ title }}</h3>
+      <p>You must specify a phrase, account, or circle to mute.</p>
       <article
         v-if="fields.length"
       >
@@ -27,13 +28,14 @@
             @input="field.value = $event.target.value"
           >
         </div>
-        <div style="{display:flex; flex-direction: row; justify-content:space-between; padding: 0.8em 0;}">
+        <p style="padding:0.8em 0">You may specify a duration or time period during the day when the mute should be active.</p>
+        <div style="{display:flex; flex-direction: row; justify-content:space-between;}">
           <div style="{flex-shrink:1}"
             v-for="field in durationFields"
             :key="field.id"
           >
               <label :for="field.id">{{ field.label }}: </label>
-              <input style="width:250px"
+              <input style="width:275px"
                 :type="field.id === 'password' ? 'password' : 'text'"
                 :name="field.id"
                 :value="field.value"
@@ -118,17 +120,17 @@
         method: 'POST', // Form request method
         // hasBody: true, // Whether or not form request has a body
         fields:[
-            {id: 'phrase', label: 'Word or Phrase', value: ''},
+            {id: 'phrase', label: 'Phrase', value: ''},
             {id: 'account', label: 'Account', value: ''},
             {id: 'circlename', label: 'Circle name', value: ''},
         ],
         durationFields:[
           {id: 'durationHours', label: 'Duration hours', value: ''},
-            {id: 'durationMins', label: 'Duration mins', value: ''},
+            {id: 'durationMins', label: 'Minutes', value: ''},
         ],
         hoursDropdowns:[
-            {id: 'startHours', label: 'Start Time Hours', value: ''},
-            {id: 'endHours', label: 'End Time Hours', value: ''},
+            {id: 'startHours', label: 'Start time hours', value: ''},
+            {id: 'endHours', label: 'End time hours', value: ''},
         ],
         minsDropdowns:[
             {id: 'startMins', label: 'Minutes', value: ''},
@@ -272,15 +274,14 @@
     font-size: 0.8em;
   }
 
-  /* .duration{
-    display:flex;
-    flex-direction: row;
-    justify-content:space-between;
-  } */
-
   select{
     border-radius: 6px;
     border-color: black;
+  }
+
+  p {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:0.8em;
   }
   </style>
   

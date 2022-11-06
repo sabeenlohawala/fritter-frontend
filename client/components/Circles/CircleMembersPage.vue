@@ -8,7 +8,7 @@
           <h2>Circle: {{this.$route.params.circlename}}</h2>
         </header>
         <button @click="backToAllCircles">
-            BACK
+            Back to all circles
           </button>
         <AddToCircleForm @add-member="addMember"/>
       </section>

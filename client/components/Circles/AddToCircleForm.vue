@@ -4,6 +4,7 @@
 <template>
   <form @submit.prevent="submit">
     <h3>{{ title }}</h3>
+    <p>You must either follow or be followed by a user to add them to a Circle.</p>
     <article
       v-if="fields.length"
     >
