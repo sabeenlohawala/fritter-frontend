@@ -103,7 +103,12 @@
   color: #7e61b9;
 }
 
-  button:hover{
+h3 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #7e61b9;
+}
+
+button:hover{
   background-color: #c3b0e6; /* Green */
   border-radius: 6px;
   /* border: 2px solid black; */

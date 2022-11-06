@@ -11,7 +11,26 @@
       </h1>
     </div>
     <div class="right">
-      <router-link 
+      <button
+        v-if="$store.state.username"
+        @click="toFeed"
+      >
+        Home
+      </button>
+      <button @click="toBrowse">Browse</button>
+      <button
+        v-if="$store.state.username"
+        @click="toAccount"
+      >
+        Account
+      </button>
+      <button
+        v-else
+        @click="toLogin"
+      >
+        Login
+      </button>
+      <!-- <router-link 
         v-if="$store.state.username"
         to="/feed"
       >
@@ -55,7 +74,7 @@
         to="/login"
       >
         Login
-      </router-link>
+      </router-link> -->
     </div>
     <section class="alerts">
       <article
@@ -69,6 +88,26 @@
   </nav>
 </template>
 
+<script>
+export default {
+  name: 'NavBar',
+  methods: {
+    toAccount() {
+      this.$router.push({name: 'Account'})
+    },
+    toLogin() {
+      this.$router.push({name: 'Login'})
+    },
+    toBrowse() {
+      this.$router.push({name: 'Browse'})
+    },
+    toFeed() {
+      this.$router.push({name: 'Feed'})
+    },
+  }
+}
+</script>
+
 <style scoped>
 nav {
     padding: 1.5vw 2vw;
@@ -77,6 +116,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0, 0.2);
 }
 
 .title {
@@ -113,4 +153,47 @@ img {
 h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+/* button:hover{
+  background-color: #c3b0e6;
+  border-radius: 6px;
+  color: white;
+} */
+
+/* button {
+  background-color: white;
+  border: 2px solid #7e61b9;
+  color: #7e61b9;
+  border-radius: 6px;
+  padding: 10px 10px;
+  margin:0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+  width:10em
+} */
+
+button:hover{
+  box-shadow: 0 2px 6px 0 rgba(0,0,0, 0.2);
+  background-color: #c3b0e6;
+  border: 2px solid #c3b0e6;
+  color: white;
+}
+
+button {
+  
+  background-color: white;
+  border-radius: 6px;
+  color: #7e61b9;
+  border-radius: 6px;
+  padding: 12px 10px;
+  margin:0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+  width:10em
+}
+
 </style>

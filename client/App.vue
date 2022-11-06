@@ -40,11 +40,12 @@ body {
   padding: 0;
   margin: 0;
   font-size: 1.3em;
-  background-color: #f1ebff79;
+  /* background-color: #f1ebff79; */
+  background-color: #f1ebff6f;
 }
 
 main {
-  padding: 0 10em 5em;
+  padding: 0 15em 5em;
 }
 
 .alerts {
