@@ -71,8 +71,8 @@
 
 <style scoped>
 nav {
-    padding: 1vw 2vw;
-    background-color: #ccc;
+    padding: 1.5vw 2vw;
+    background-color: #c3b0e6;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -99,6 +99,7 @@ img {
     gap: 16px;
     grid-auto-flow: column;
     align-items: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 .right a {
@@ -107,5 +108,9 @@ img {
 
 .alerts {
     width: 25%;
+}
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 </style>

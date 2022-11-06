@@ -39,11 +39,12 @@ body {
   display: flex;
   padding: 0;
   margin: 0;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  background-color: #f1ebff79;
 }
 
 main {
-  padding: 0 5em 5em;
+  padding: 0 10em 5em;
 }
 
 .alerts {

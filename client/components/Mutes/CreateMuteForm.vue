@@ -170,36 +170,75 @@
   
   <style scoped>
   form {
-    border: 1px solid #111;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+    border-radius: 6px;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 14px;
     position: relative;
+    background-color: white;
   }
-  
+
   article > div {
     display: flex;
     flex-direction: column;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:0.8em;
   }
-  
+
   form > article p {
     margin: 0;
   }
-  
+
   form h3,
   form > * {
     margin: 0.3em 0;
   }
-  
+
   form h3 {
     margin-top: 0;
+    color: #7e61b9;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
   }
-  
+
   textarea {
-     font-family: inherit;
-     font-size: inherit;
+    border: 1px solid black;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  input {
+    border:1px solid black;
+    border-radius: 6px;
+  }
+
+  button:hover{
+    background-color: #b49de3; /* Green */
+    border-radius: 6px;
+    /* border: 2px solid black; */
+    color: white;
+    padding: 10px 5px;
+    margin:1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+  }
+
+  button {
+    background-color: white; /* Green */
+    border: 2px solid #b49de3;
+    color: #7e61b9;;
+    border-radius: 6px;
+    padding: 10px 5px;
+    margin:1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
   }
   </style>
   

@@ -12,6 +12,7 @@ export default {
       method: 'POST',
       hasBody: true,
       fields: [
+        {id: 'circlename', label: 'Circle Name', value: ''},
         {id: 'content', label: 'Content', value: ''}
       ],
       title: 'Create a freet',

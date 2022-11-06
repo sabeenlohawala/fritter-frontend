@@ -112,5 +112,10 @@
     padding: 3%;
     overflow-y: scroll;
   }
+
+  h2 {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #7e61b9;
+  }
   </style>
   

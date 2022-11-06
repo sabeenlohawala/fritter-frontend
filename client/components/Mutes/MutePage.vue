@@ -4,7 +4,7 @@
     <main>
       <section v-if="$store.state.username">
         <header>
-          <h2>Welcome @{{ $store.state.username }}</h2>
+          <h2>Your mutes</h2>
         </header>
         <CreateMuteForm />
       </section>
@@ -24,9 +24,9 @@
       <section v-if="$store.state.username">
         <header>
           <div class="left">
-            <h2>
+            <!-- <h2>
               Viewing all mutes
-            </h2>
+            </h2> -->
           </div>
         </header>
         <section
@@ -104,6 +104,11 @@
     flex: 1 0 50vh;
     padding: 3%;
     overflow-y: scroll;
+  }
+  
+  h2 {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #7e61b9;
   }
   </style>
   

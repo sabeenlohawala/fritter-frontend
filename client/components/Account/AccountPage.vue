@@ -36,3 +36,10 @@ export default {
   }
 };
 </script>
+
+<style>
+h2 {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #7e61b9;
+  }
+</style>

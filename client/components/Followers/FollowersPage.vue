@@ -3,9 +3,6 @@
 <template>
   <main>
     <section v-if="$store.state.username">
-      <header>
-        <h2>Welcome @{{ $store.state.username }}</h2>
-      </header>
     </section>
     <section v-else>
       <header>
@@ -24,7 +21,7 @@
       <header>
         <div class="left">
           <h2>
-            Viewing all followers
+            Followers
           </h2>
         </div>
       </header>
@@ -91,5 +88,10 @@ section .scrollbox {
   flex: 1 0 50vh;
   padding: 3%;
   overflow-y: scroll;
+}
+
+h2 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #7e61b9;
 }
 </style>

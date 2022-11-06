@@ -4,7 +4,7 @@
     <main>
       <section v-if="$store.state.username">
         <header>
-          <h2>Welcome @{{ $store.state.username }}</h2>
+          <h2>Your circles</h2>
         </header>
         <CreateCircleForm />
       </section>
@@ -24,9 +24,9 @@
       <section v-if="$store.state.username">
         <header>
           <div class="left">
-            <h2>
+            <!-- <h2>
               Viewing all circles
-            </h2>
+            </h2> -->
           </div>
         </header>
         <section
@@ -78,6 +78,11 @@
     display: flex;
     flex-direction: column;
   }
+
+  h2 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #7e61b9;
+}
   
   header, header > * {
       display: flex;

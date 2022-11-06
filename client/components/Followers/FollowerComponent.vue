@@ -96,8 +96,45 @@ export default {
 
 <style scoped>
 .follower {
-    border: 1px solid #111;
-    padding: 20px;
+    /* border: 1px solid #111; */
+    padding: 10px;
     position: relative;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0, 0.2);
+    border-radius: 6px;
+    background-color: white;
+    margin:2px;
+}
+
+h3 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0px;
+  font-size: 1em;
+  color: #7e61b9;
+}
+
+button:hover{
+  background-color: #c3b0e6; /* Green */
+  border-radius: 6px;
+  /* border: 2px solid black; */
+  color: white;
+  padding: 5px 5px;
+  margin:1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+button {
+  background-color: white; /* Green */
+  border: 2px solid #c3b0e6;
+  color: rgb(126, 97, 185);
+  border-radius: 6px;
+  padding: 5px 5px;
+  margin:1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
 }
 </style>

@@ -9,7 +9,28 @@
       <h3 class="author">
         @{{ freet.author }}
       </h3>
-      <div
+    </header>
+    <textarea
+      v-if="editing"
+      class="content"
+      :value="draft"
+      @input="draft = $event.target.value"
+    />
+    <p
+      v-else
+      class="content"
+    >
+      {{ freet.content }}
+    </p>
+    <p
+      v-if="$store.state.username === freet.author && freet.circlename"
+      class="info"
+    >Only visible to circle: {{freet.circlename}}</p>
+    <p class="info">
+      Posted at {{ freet.dateModified }}
+      <i v-if="freet.edited">(edited)</i>
+    </p>
+    <div
         v-if="$store.state.username === freet.author"
         class="actions"
       >
@@ -35,23 +56,6 @@
           🗑️ Delete
         </button>
       </div>
-    </header>
-    <textarea
-      v-if="editing"
-      class="content"
-      :value="draft"
-      @input="draft = $event.target.value"
-    />
-    <p
-      v-else
-      class="content"
-    >
-      {{ freet.content }}
-    </p>
-    <p class="info">
-      Posted at {{ freet.dateModified }}
-      <i v-if="freet.edited">(edited)</i>
-    </p>
     <section class="alerts">
       <article
         v-for="(status, alert, index) in alerts"
@@ -169,8 +173,57 @@ export default {
 
 <style scoped>
 .freet {
-    border: 1px solid #111;
-    padding: 20px;
+    /* border: 1.5px solid #111; */
+    box-shadow: 0 2px 6px 0 rgba(0,0,0, 0.2);
+    /* background-color: #d5eaf2; */
+    border-radius: 6px;
+    padding: 10px;
     position: relative;
+    margin:2px;
+    background-color: white;
+}
+
+h3 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0px;
+  font-size: 1em;
+  color: #7e61b9;
+}
+.content{
+    position: relative;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.8em;
+}
+
+.info{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.6em;
+  padding: 0px;
+}
+
+button:hover{
+  background-color: #c3b0e6; /* Green */
+  border-radius: 6px;
+  /* border: 2px solid black; */
+  color: white;
+  padding: 5px 5px;
+  margin:1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+button {
+  background-color: white; /* Green */
+  border: 2px solid #c3b0e6;
+  color: rgb(126, 97, 185);
+  border-radius: 6px;
+  padding: 5px 5px;
+  margin:1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
 }
 </style>

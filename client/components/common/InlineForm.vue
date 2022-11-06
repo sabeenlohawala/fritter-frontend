@@ -54,4 +54,35 @@ input {
     padding: 0 5px;
     min-width: 200px;
 }
+
+button:hover{
+  background-color: #c3b0e6; /* Green */
+  border-radius: 6px;
+  /* border: 2px solid black; */
+  color: white;
+  padding: 5px 5px;
+  margin:1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+button {
+  background-color: white; /* Green */
+  border: 2px solid #c3b0e6;
+  color: rgb(126, 97, 185);
+  border-radius: 6px;
+  padding: 5px 5px;
+  margin:1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+input {
+  border:1px solid black;
+  border-radius: 6px;
+}
 </style>

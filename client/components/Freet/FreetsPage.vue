@@ -23,14 +23,14 @@
     </section>
     <section>
       <header>
-        <div class="left">
+        <!-- <div class="left">
           <h2>
             Viewing all freets
             <span v-if="$store.state.filter">
               by @{{ $store.state.filter }}
             </span>
           </h2>
-        </div>
+        </div> -->
         <div class="right">
           <GetFreetsForm
             ref="getFreetsForm"
@@ -82,6 +82,18 @@ header, header > * {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #7e61b9;
+}
+
+h2 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #7e61b9;
+}
+
+h3 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #7e61b9;
 }
 
 button {

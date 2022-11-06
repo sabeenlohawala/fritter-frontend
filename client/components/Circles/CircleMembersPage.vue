@@ -4,7 +4,7 @@
     <main>
       <section v-if="$store.state.username">
         <header>
-          <h2>{{this.$route.params.circlename}} Circle</h2>
+          <h2>Circle: {{this.$route.params.circlename}}</h2>
         </header>
         <button @click="backToAllCircles">
             BACK
@@ -28,7 +28,7 @@
         <header>
           <div class="left">
             <h2>
-              Viewing all members
+              Circle members
             </h2>
           </div>
         </header>
@@ -98,9 +98,36 @@
       align-items: center;
   }
   
-  button {
-      margin-right: 10px;
-  }
+  h2 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #7e61b9;
+}
+
+  button:hover{
+  background-color: #c3b0e6; /* Green */
+  border-radius: 6px;
+  /* border: 2px solid black; */
+  color: white;
+  padding: 5px 5px;
+  margin:1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+button {
+  background-color: white; /* Green */
+  border: 2px solid #c3b0e6;
+  color: rgb(126, 97, 185);
+  border-radius: 6px;
+  padding: 5px 5px;
+  margin:1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+}
   
   section .scrollbox {
     flex: 1 0 50vh;
