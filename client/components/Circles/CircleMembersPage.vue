@@ -1,7 +1,8 @@
 <!-- Default page that also displays freets -->
 
 <template>
-    <main>
+    <main
+    >
       <section v-if="$store.state.username">
         <header>
           <h2>Circle: {{this.$route.params.circlename}}</h2>
@@ -9,7 +10,7 @@
         <button @click="backToAllCircles">
             BACK
           </button>
-        <AddToCircleForm />
+        <AddToCircleForm @add-member="addMember"/>
       </section>
       <section v-else>
         <header>
@@ -35,7 +36,7 @@
         <section
           v-if="this.circleMembers.length"
         >
-          <CircleMemberComponent
+          <CircleMemberComponent @delete-member="deleteMember"
             v-for="member in this.circleMembers"
             :key="member.id"
             :member="member"
@@ -63,6 +64,12 @@
     methods:{
         backToAllCircles(){
             this.$router.push({name: 'Circles'});
+        },
+        addMember(member){
+          this.circleMembers.push(member);
+        },
+        deleteMember(member){
+          this.circleMembers = this.circleMembers.filter(user => user != member);
         }
     },
     async mounted() {

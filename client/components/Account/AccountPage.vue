@@ -103,6 +103,6 @@ button {
   width:24.75%;
   text-align: center;
   text-decoration: none;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 </style>

@@ -154,26 +154,6 @@ h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* button:hover{
-  background-color: #c3b0e6;
-  border-radius: 6px;
-  color: white;
-} */
-
-/* button {
-  background-color: white;
-  border: 2px solid #7e61b9;
-  color: #7e61b9;
-  border-radius: 6px;
-  padding: 10px 10px;
-  margin:0px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.8em;
-  width:10em
-} */
-
 button:hover{
   box-shadow: 0 2px 6px 0 rgba(0,0,0, 0.2);
   background-color: #c3b0e6;

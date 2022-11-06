@@ -52,7 +52,9 @@ form {
 
 input {
     padding: 0 5px;
-    min-width: 200px;
+    min-width: 300px;
+    border:1px solid black;
+    border-radius: 6px;
 }
 
 button:hover{
@@ -79,10 +81,5 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 0.8em;
-}
-
-input {
-  border:1px solid black;
-  border-radius: 6px;
 }
 </style>

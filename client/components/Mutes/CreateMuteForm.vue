@@ -27,6 +27,28 @@
             @input="field.value = $event.target.value"
           >
         </div>
+        <div class="duration">
+        <div style="{flex-shrink:1}"
+          v-for="field in durationFields"
+          :key="field.id"
+        >
+            <label :for="field.id">{{ field.label }}:</label>
+            <textarea
+              v-if="field.id === 'content'"
+              :name="field.id"
+              :value="field.value"
+              @input="field.value = $event.target.value"
+            />
+            
+            <input
+              v-else
+              :type="field.id === 'password' ? 'password' : 'text'"
+              :name="field.id"
+              :value="field.value"
+              @input="field.value = $event.target.value"
+            >
+        </div>
+        </div>
         <div
             v-for="i in [0,1]"
         >
@@ -92,7 +114,9 @@
             {id: 'phrase', label: 'Word or Phrase', value: ''},
             {id: 'account', label: 'Account', value: ''},
             {id: 'circlename', label: 'Circle name', value: ''},
-            {id: 'durationHours', label: 'Duration hours', value: ''},
+        ],
+        durationFields:[
+          {id: 'durationHours', label: 'Duration hours', value: ''},
             {id: 'durationMins', label: 'Duration mins', value: ''},
         ],
         hoursDropdowns:[
@@ -239,6 +263,12 @@
     text-decoration: none;
     display: inline-block;
     font-size: 0.8em;
+  }
+
+  .duration{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
   }
   </style>
   
