@@ -94,7 +94,7 @@ export default {
       }
 
       try {
-        // console.log(options.body)
+        // console.log(options)
         const r = await fetch(this.url, options);
         if (!r.ok) {
           // If response is not okay, we throw an error and enter the catch block

@@ -94,4 +94,11 @@ h2 {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   color: #7e61b9;
 }
+
+h3 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0px;
+  font-size: 1em;
+  color: #7e61b9;
+}
 </style>

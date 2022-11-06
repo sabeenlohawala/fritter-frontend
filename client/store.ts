@@ -99,7 +99,7 @@ const store = new Vuex.Store({
       /**
        * Request the server for the currently available followers.
        */
-      console.log('here')
+      // console.log('here')
       const url = `/api/follows/following`;
       const res = await fetch(url).then(async r => r.json());
       state.following = res;
@@ -120,7 +120,7 @@ const store = new Vuex.Store({
       /**
        * Request the server for the currently available followers.
        */
-      console.log('here')
+      console.log('refreshCirclenames')
       const url = `/api/circles/circlenames`;
       const res = await fetch(url, {method: 'GET'}).then(async r => r.json());
       // for (const circle of res){

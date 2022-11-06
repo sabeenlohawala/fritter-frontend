@@ -27,33 +27,29 @@
             @input="field.value = $event.target.value"
           >
         </div>
-        <div class="duration">
-        <div style="{flex-shrink:1}"
-          v-for="field in durationFields"
-          :key="field.id"
-        >
-            <label :for="field.id">{{ field.label }}:</label>
-            <textarea
-              v-if="field.id === 'content'"
-              :name="field.id"
-              :value="field.value"
-              @input="field.value = $event.target.value"
-            />
-            
-            <input
-              v-else
-              :type="field.id === 'password' ? 'password' : 'text'"
-              :name="field.id"
-              :value="field.value"
-              @input="field.value = $event.target.value"
-            >
+        <div style="{display:flex; flex-direction: row; justify-content:space-between; padding: 0.8em 0;}">
+          <div style="{flex-shrink:1}"
+            v-for="field in durationFields"
+            :key="field.id"
+          >
+              <label :for="field.id">{{ field.label }}: </label>
+              <input style="width:250px"
+                :type="field.id === 'password' ? 'password' : 'text'"
+                :name="field.id"
+                :value="field.value"
+                @input="field.value = $event.target.value"
+              >
+          </div>
         </div>
-        </div>
-        <div
+        <div style="{display:flex; flex-direction: row; justify-content:space-between; }"
             v-for="i in [0,1]"
         >
-            <label :for="hoursDropdowns[i].id">{{hoursDropdowns[i].label}}:</label>
-            <select :name="hoursDropdowns[i].id" :id="hoursDropdowns[i].id">
+          <div style="{flex-shrink:1}">
+            <label :for="hoursDropdowns[i].id">{{hoursDropdowns[i].label}}: </label>
+            <select style="width:150px"
+              :name="hoursDropdowns[i].id"
+              :id="hoursDropdowns[i].id"
+            >
                 <option 
                     v-for="hour in ['',1,2,3,4,5,6,7,8,9,10,11,12]"
                     :name="hoursDropdowns[i].id"
@@ -61,8 +57,13 @@
                     @input="hoursDropdowns[i].value = $event.target.value"
                 >{{hour}}</option>
             </select>
-            <label :for="minsDropdowns[i].id">{{minsDropdowns[i].label}}:</label>
-            <select :name="minsDropdowns[i].id" :id="minsDropdowns[i].id">
+          </div>
+          <div style="{flex-shrink:1}">
+            <label :for="minsDropdowns[i].id">{{minsDropdowns[i].label}}: </label>
+            <select style="width:150px"
+              :name="minsDropdowns[i].id" 
+              :id="minsDropdowns[i].id"
+            >
                 <option 
                     v-for="hour in ['',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59]"
                     :name="minsDropdowns[i].id"
@@ -70,8 +71,13 @@
                     @input="minsDropdowns[i].value = $event.target.value"
                 >{{hour}}</option>
             </select>
-            <label :for="AMPMDropdowns[i].id">{{AMPMDropdowns[i].label}}:</label>
-            <select :name="AMPMDropdowns[i].id" :id="AMPMDropdowns[i].id">
+          </div>
+            <div style="{flex-shrink:1}">
+            <label :for="AMPMDropdowns[i].id">{{AMPMDropdowns[i].label}}: </label>
+            <select style="width:150px"
+              :name="AMPMDropdowns[i].id" 
+              :id="AMPMDropdowns[i].id"
+            >
                 <option
                     v-for="hour in ['AM','PM']"
                     :name="AMPMDropdowns[i].id"
@@ -79,6 +85,7 @@
                     @input="AMPMDropdowns[i].value = $event.target.value"
                 >{{hour}}</option>
             </select>
+          </div>
         </div>
       </article>
       <button
@@ -265,10 +272,15 @@
     font-size: 0.8em;
   }
 
-  .duration{
+  /* .duration{
     display:flex;
     flex-direction: row;
     justify-content:space-between;
+  } */
+
+  select{
+    border-radius: 6px;
+    border-color: black;
   }
   </style>
   
